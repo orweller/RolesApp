@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "dashboard", to: "pages#dashboard"
+
+  resource :session
+  resources :passwords, param: :token
 end
