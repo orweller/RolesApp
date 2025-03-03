@@ -24,8 +24,18 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <div class="absolute inset-0 grid [grid-template-areas:'topbar_topbar'_'sidebar_main'] grid-cols-[auto_1fr] grid-rows-[auto_1fr_0]">
+      <div class="[grid-area:topbar] bg-blue-200 h-20">
+        Topbar
+      </div>
+      <div class="[grid-area:sidebar] bg-yellow-200 w-14 md:w-64">
+        Sidebar
+      </div>
+      <div class="[grid-area:main] bg-red-200">
+        <main class="container mx-auto mt-28 px-5 flex">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
   </body>
 </html>
