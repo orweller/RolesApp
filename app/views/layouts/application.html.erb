@@ -26,13 +26,22 @@
   <body>
     <div class="absolute inset-0 grid [grid-template-areas:'topbar_topbar'_'sidebar_main'] grid-cols-[auto_1fr] grid-rows-[auto_1fr_0]">
       <div class="[grid-area:topbar] bg-blue-200 h-20">
-        Topbar
+        <div class="flex flex-row justify-between items-center h-20 py-2 px-5">
+          <div class="text-2xl font-bold">
+            Roles & Goals
+          </div>
+          <div class="text-xl">
+            User Menu
+          </div>
+        </div>
       </div>
-      <div class="[grid-area:sidebar] bg-yellow-200 w-14 md:w-64">
-        Sidebar
+      <div class="[grid-area:sidebar] bg-yellow-200 w-14 md:w-64 p-5">
+        <div class="text-xl">
+          Sidebar
+        </div>
       </div>
       <div class="[grid-area:main] bg-red-200">
-        <main class="container mx-auto mt-28 px-5 flex">
+        <main class="container p-5 flex">
           <%= yield %>
         </main>
       </div>
