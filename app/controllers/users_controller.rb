@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  allow_unauthenticated_access
+  before_action :require_authentication
 
   def edit
+    @user = Current.user
   end
 
   def update_profile

@@ -34,20 +34,25 @@
           <div class="text-2xl font-bold">
             Roles & Goals
           </div>
-          <div class="text-xl">
-            <%= Current.user.initials %>
+          <div data-controller="menu">
+            <div>
+              <button data-action="menu#toggleMenu" type="button" class="border rounded-full bg-slate-100 font-medium p-2 drop-shadow-sm">
+                <span><%= Current.user.initials %></span>
+              </button>
+            </div>
+            <%= render "users/menu", class: "border rounded-full bg-slate-100 font-medium p-2 drop-shadow-sm" %>
           </div>
         </div>
       </div>
       <div class="[grid-area:sidebar] bg-slate-50 w-14 md:w-64 mt-2">
         <div class="flex flex-col space-y-2">
-          <%= render "layouts/sidebar/nav_link", text: "Home", path: dashboard_path, icon: "fa-house" %>
-          <%= render "layouts/sidebar/nav_link", text: "Roles", path: "#", icon: "fa-masks-theater" %>
-          <%= render "layouts/sidebar/nav_link", text: "Goals", path: "#", icon: "fa-bullseye" %>
-          <%= render "layouts/sidebar/nav_link", text: "Next Steps", path: "#", icon: "fa-stairs" %>
+          <%= render "sidebar/nav_link", text: "Home", path: dashboard_path, icon: "fa-house" %>
+          <%= render "sidebar/nav_link", text: "Roles", path: "#", icon: "fa-masks-theater" %>
+          <%= render "sidebar/nav_link", text: "Goals", path: "#", icon: "fa-bullseye" %>
+          <%= render "sidebar/nav_link", text: "Next Steps", path: "#", icon: "fa-stairs" %>
         </div>
       </div>
-      <div class="[grid-area:main] bg-white border border-slate-400 rounded-tl-lg shadow-xl">
+      <div class="[grid-area:main] bg-white border border-slate-400 rounded-tl-lg shadow-lg">
         <main class="container p-5 flex">
           <%= yield %>
         </main>
