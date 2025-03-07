@@ -1,3 +1,43 @@
-<div>
-  Edit User Form
-</div>
+<turbo-frame id="modal">
+  <div data-controller="modal" data-action="turbo:submit-end->modal#hideOnSubmit keydown.esc->modal#hide" role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
+
+    <%= button_to nil, nil, type: :button, method: :get, form: { data: { action: "modal#hide" } }, class: "fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30" %>
+
+    <div class="relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-white shadow-lg rounded-md p-2 md:p-10">
+      <div>
+        <% if alert = flash[:alert] %>
+          <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
+        <% end %>
+
+        <% if notice = flash[:notice] %>
+          <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+        <% end %>
+
+        <h1 class="font-bold text-2xl">Update User Profile</h1>
+
+        <%= form_with url: update_user_profile_url, method: :patch, class: "contents" do |form| %>
+          <div class="my-5">
+            <%= form.label :first_name, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :first_name, required: false, value: Current.user.first_name, placeholder: "First Name", autofocus: true, class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
+          </div>
+
+          <div class="my-5">
+            <%= form.label :last_name, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :last_name, required: false, value: Current.user.last_name, placeholder: "Last Name", autofocus: true, class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
+          </div>
+
+          <div class="my-5">
+            <%= form.label :email_address, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.email_field :email_address, required: true, value: Current.user.email_address, autofocus: true, class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
+          </div>
+
+          <div class="mt-5 inline flex content-center items-center justify-between">
+            <%= form.submit "Save", class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer w-auto" %>
+            <%= button_tag "Cancel", type: :button, method: :get, data: { action: "modal#hide" }, class: "px-3.5 py-2.5 text-sm leading-6 font-medium text-gray-700 bg-white border border-gray-200 rounded-md hover:border-gray-300 w-auto" %>
+            <%= button_to "New Cancel", dashboard_path, method: :get, data: { action: "modal#hide" }, class: "px-3.5 py-2.5 text-sm leading-6 font-medium text-gray-700 bg-white border border-gray-200 rounded-md hover:border-gray-300 w-auto" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</turbo-frame>
